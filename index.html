@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Compressor</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="ti ti-photo-compress"></i> Image Compressor / Resizer</h1>
+    </header>
+    
+    <div class="drop-zone" id="dropZone">
+      <!-- Default upload state -->
+      <div class="upload-ui" id="uploadUI">
+        <i class="ti ti-cloud-upload"></i>
+        <p>Drag & drop your image here</p>
+        <span>or</span>
+        <button class="btn-browse">Browse Files</button>
+        <p class="file-info">Max 10MB • JPG, PNG, WebP</p>
+      </div>
+
+      <!-- Preview state -->
+      <div class="preview-ui" id="previewUI" hidden>
+        <div class="preview-container">
+          <div class="thumbnail-container">
+            <img id="imagePreview" class="thumbnail-image">
+          </div>
+          <div class="file-details">
+            <p><i class="ti ti-file"></i> <span id="filenameDisplay"></span></p>
+            <p><i class="ti ti-ruler"></i> <span id="dimensionsDisplay"></span></p>
+            <p><i class="ti ti-database"></i> <span id="filesizeDisplay"></span></p>
+          </div>
+        </div>
+        <button class="btn-change">Change Image</button>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" hidden>
+    </div>
+
+    <!-- Compression controls -->
+    <div class="size-control" id="sizeControl">
+      <div class="target-input">
+        <label>Target Size:</label>
+        <div class="input-group">
+          <input type="number" id="targetSize" min="1" placeholder="50">
+          <select id="sizeUnit">
+            <option value="KB">KB</option>
+            <option value="MB">MB</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- DPI Adjustment with toggle -->
+      <div class="setting">
+        <div class="setting-header">
+          <input type="checkbox" id="dpiToggle">
+          <label for="dpiToggle">Adjust DPI</label>
+        </div>
+        <input type="number" id="dpiInput" min="72" max="1200" placeholder="e.g., 300" disabled>
+      </div>
+      
+      <!-- Resize Dimensions with toggle -->
+      <div class="setting">
+        <div class="setting-header">
+          <input type="checkbox" id="resizeToggle">
+          <label for="resizeToggle">Resize Dimensions</label>
+        </div>
+        <div class="dimension-inputs">
+          <input type="number" id="widthInput" placeholder="Width" disabled>
+          <span>x</span>
+          <input type="number" id="heightInput" placeholder="Height" disabled>
+          <select id="resizeUnit" disabled>
+            <option value="px">px</option>
+            <option value="%">%</option>
+            <option value="in">in</option>
+            <option value="cm">cm</option>
+          </select>
+          <button id="lockBtn" class="locked" disabled>
+            <i class="ti ti-lock"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="actions">
+        <button id="compressBtn" class="btn-primary">
+          <i class="ti ti-compress"></i> Compress
+        </button>
+        <button id="downloadBtn" class="btn-secondary" disabled>
+          <i class="ti ti-download"></i> Download
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
