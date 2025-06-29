@@ -438,3 +438,15 @@ header h1 {
     width: 100%;
   }
 }
+
+/* Prevent touch highlights on interactive elements */
+button, input, select {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Improve touch target sizing */
+button, .btn-browse, .btn-change {
+  min-height: 44px;
+  min-width: 44px;
+}

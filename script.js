@@ -112,6 +112,7 @@ function handleFileSelect() {
   if (fileInput.files.length) handleFiles(fileInput.files[0]);
 }
 
+// Replace the handleFiles function with this optimized version
 function handleFiles(file) {
   if (!file) return;
   
@@ -134,33 +135,37 @@ function handleFiles(file) {
   previewUI.hidden = false;
   
   const imgPreview = document.getElementById('imagePreview');
-  const objectURL = URL.createObjectURL(file);
+  const reader = new FileReader();
   
-  imgPreview.onload = function() {
-    originalWidth = this.naturalWidth || this.width;
-    originalHeight = this.naturalHeight || this.height;
+  reader.onload = function(e) {
+    imgPreview.onload = function() {
+      originalWidth = this.naturalWidth || this.width;
+      originalHeight = this.naturalHeight || this.height;
+      
+      // Update UI
+      document.getElementById('filenameDisplay').textContent = file.name;
+      document.getElementById('dimensionsDisplay').textContent = 
+        `${originalWidth} × ${originalHeight} px`;
+      document.getElementById('filesizeDisplay').textContent = 
+        formatFileSize(file.size);
+      
+      // Set default values for resize inputs
+      widthInput.value = originalWidth;
+      heightInput.value = originalHeight;
+    };
     
-    // Update UI
-    document.getElementById('filenameDisplay').textContent = file.name;
-    document.getElementById('dimensionsDisplay').textContent = 
-      `${originalWidth} × ${originalHeight} px`;
-    document.getElementById('filesizeDisplay').textContent = 
-      formatFileSize(file.size);
+    imgPreview.onerror = function() {
+      alert('Error loading image preview');
+    };
     
-    // Set default values for resize inputs
-    widthInput.value = originalWidth;
-    heightInput.value = originalHeight;
-    
-    // Clean up memory
-    URL.revokeObjectURL(objectURL);
+    imgPreview.src = e.target.result;
   };
   
-  imgPreview.onerror = function() {
-    alert('Error loading image preview');
-    URL.revokeObjectURL(objectURL);
+  reader.onerror = function() {
+    alert('Error reading file');
   };
   
-  imgPreview.src = objectURL;
+  reader.readAsDataURL(file);
 }
 
 function startCompression() {
