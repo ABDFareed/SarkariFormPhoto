@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compression Results</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/iconfont/tabler-icons.min.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i class="ti ti-photo-check"></i> Compression Results</h1>
+    </header>
+    
+    <div class="results-container">
+      <div class="compressed-preview">
+        <h3>SarkariFormPhotoCompressed</h3>
+        <img id="compressedPreview" class="result-preview">
+      </div>
+      
+      <div class="compression-stats">
+        <div class="stat-card">
+          <i class="ti ti-ruler"></i>
+          <div>
+            <h3>Dimensions</h3>
+            <p id="dimensionsDisplay">-</p>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <i class="ti ti-database"></i>
+          <div>
+            <h3>File Size</h3>
+            <p id="filesizeDisplay">-</p>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <i class="ti ti-file"></i>
+          <div>
+            <h3>Format</h3>
+            <p id="formatDisplay">-</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="download-section">
+        <button id="downloadBtn" class="btn-primary">
+          <i class="ti ti-download"></i> Download Compressed Image
+        </button>
+        <button id="newCompressionBtn" class="btn-secondary">
+          <i class="ti ti-arrow-back"></i> Compress Another Image
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="results.js"></script>
+</body>
+</html>
